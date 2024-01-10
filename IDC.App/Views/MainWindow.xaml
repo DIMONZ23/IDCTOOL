@@ -1,0 +1,90 @@
+﻿<Window x:Class="IDC.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:local="clr-namespace:IDC.App"
+        xmlns:converer="clr-namespace:IDC.App.ProjectManagement.Converters"
+        xmlns:vm="clr-namespace:IDC.App.ProjectManagement.ViewModels"
+        mc:Ignorable="d"
+        Title="IDC Tool - Project Management" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <converer:FirstRowVisibilityConverter x:Key="FirstRowVisibility" />
+        <converer:FirstRowIconConverter x:Key="FirstRowIconConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBox x:Name="searchTextBox" Width="200" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Right" Text="{Binding ProjectName}" Grid.Row="1">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="GotFocus">
+                    <i:InvokeCommandAction Command="{Binding GotFocusCommand, Mode=TwoWay}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <TextBlock Grid.Row="1" HorizontalAlignment="Right" Margin="14">
+            <fa:FontAwesome Icon="Search" Margin="0"/>
+        </TextBlock>
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False" Margin="20,40,10,0" ItemsSource="{Binding ProjectList, Mode=TwoWay}" GridLinesVisibility="None" CanUserAddRows="False" SelectedItem="{Binding SelectedProject}" SelectedIndex="{Binding CurrentIndex}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Project Name" Binding="{Binding ProjectName, UpdateSourceTrigger=PropertyChanged}" Width="200"/>
+                <DataGridTextColumn Header="Author" Binding="{Binding Author, UpdateSourceTrigger=PropertyChanged}" Width="120"/>
+                <DataGridTextColumn Header="Date Modified" Binding="{Binding DateModified, UpdateSourceTrigger=PropertyChanged}" Width="140" />
+                <DataGridTextColumn Header="Status" Binding="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Width="120"/>
+                <DataGridTemplateColumn Width="40">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="btnExecute" 
+                                    HorizontalAlignment="Left"
+                                    Height="25"
+                                    Width="25"
+                                    FontFamily="Arial Black"
+                                    Foreground="Black"
+                                    Margin="0,0,0,0" Background="White" Padding="0" BorderThickness="0" FontSize="17"
+                                    Click="btnExecute_Click"
+                                    Visibility="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource FirstRowVisibility}}">
+                                    <fa:FontAwesome Icon="PlayCircle" Margin="0"/>
+                                    
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="40">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button HorizontalAlignment="Left"
+                                    Height="25"
+                                    Width="25"
+                                    FontFamily="Arial Black"
+                                    Foreground="Black"
+                                    Margin="0,0,0,0" Background="White" Padding="0" BorderThickness="0" FontSize="17"
+                                    Visibility="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource FirstRowVisibility}}">
+                                <fa:FontAwesome Icon="Gear" Margin="0"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="40">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button HorizontalAlignment="Left"
+                                    Height="25"
+                                    Width="25"
+                                    FontFamily="Arial Black"
+                                    Foreground="Black"
+                                    Margin="0,0,0,0" Background="White" Padding="0" BorderThickness="0" FontSize="17" Command="{Binding DataContext.AddDeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
+                                <Button.Content>
+                                    <fa:FontAwesome Icon="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource FirstRowIconConverter}}"/>
+                                </Button.Content>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

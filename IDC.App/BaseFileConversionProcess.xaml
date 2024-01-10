@@ -1,0 +1,24 @@
+﻿<Window x:Class="IDC.App.BaseFileConversionProcess"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IDC.App"
+        mc:Ignorable="d"
+        Title="IDC Tool - Configuration - Base File - Advanced Settings - Conversion Process Settings" Height="450" Width="800">
+    <Grid>
+        <ComboBox HorizontalAlignment="Left" Margin="78,27,0,0" VerticalAlignment="Top" Width="167"/>
+        <Label Content="Action Name" HorizontalAlignment="Left" Margin="419,25,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="516,27,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="214" Height="22"/>
+        <Rectangle HorizontalAlignment="Left" Height="325" Margin="46,87,0,0" Stroke="Gray"  VerticalAlignment="Top" Width="711"/>
+        <RadioButton Content="" HorizontalAlignment="Left" Margin="162,114,0,0" VerticalAlignment="Top"/>
+        <RadioButton Content="" HorizontalAlignment="Left" Margin="568,114,0,0" VerticalAlignment="Top" RenderTransformOrigin="6.643,0.879"/>
+        <Label Content="File Merge" HorizontalAlignment="Left" Margin="84,108,0,0" VerticalAlignment="Top"/>
+        <Label Content="Record Addition" HorizontalAlignment="Left" Margin="459,108,0,0" VerticalAlignment="Top"/>
+        <Label Content="File Format" HorizontalAlignment="Left" Margin="84,150,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Margin="162,152,0,0" VerticalAlignment="Top" Width="144"/>
+        <Label Content="Encoding" HorizontalAlignment="Left" Margin="459,152,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Margin="534,152,0,0" VerticalAlignment="Top" Width="158"/>
+
+    </Grid>
+</Window>

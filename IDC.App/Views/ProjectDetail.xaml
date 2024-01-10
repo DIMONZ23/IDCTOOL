@@ -1,0 +1,129 @@
+﻿<Window x:Class="IDC.App.Views.ProjectDetail"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IDC.App.Views"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+         SizeToContent="Manual"
+        
+        Title="BaseFile" Height="550" Width="800">
+    <Grid Margin="1,0,-1,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" Height="30" Width="800">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Project Name" Style="{StaticResource GlobalFontStyleHint}" Margin="10,7,0,0"/>
+                <TextBox  Grid.Column="0" Style="{StaticResource globalTextBoxShort}" Margin="65,3,0,0" Text="{Binding NewProject.ProjectName,Mode=TwoWay}"/>
+                <Label Grid.Column="1" Content="Created by" Style="{StaticResource GlobalFontStyleHint}" Margin="20,7,0,0"/>
+                <TextBox Grid.Column="1" 
+                         Style="{StaticResource globalTextBoxShort}" Margin="60,3,0,0" 
+                         Text="{Binding NewProject.Author}"/>
+                <Label Grid.Column="2" Content="File Format" Style="{StaticResource GlobalFontStyleHint}" Margin="20,7,0,0"/>
+                <ComboBox Grid.Column="2"
+                          Style="{StaticResource baseStyleComboBox}" Margin="70,0,0,0"
+                          ItemsSource="{Binding fileFormat}"
+                          SelectedValue="{Binding SelectedFileFormat,Mode=TwoWay}"
+                          DisplayMemberPath="Key"
+                          SelectedValuePath="Value" SelectedIndex="0"/>
+            </Grid>
+        </DockPanel>
+        <StackPanel Grid.Row="1" Height="30" Width="800">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="53*"/>
+                    <ColumnDefinition Width="125*"/>
+                    <ColumnDefinition Width="89*"/>
+                </Grid.ColumnDefinitions>
+                <Label Style="{StaticResource GlobalFontStyleHint}" Content="Base File"  Margin="10,5,0,0" Grid.ColumnSpan="2"/>
+                <TextBox Style="{StaticResource globalTextBoxLong}" IsReadOnly="True" Margin="92,3,141,4" Text="{Binding BaseFilePath, Mode=TwoWay}" Grid.ColumnSpan="2"/>
+                <Button Content="Browse" Style="{StaticResource globalButtonHint}" Margin="258,3,27,4" Command="{Binding BrowseCommand}" Grid.Column="1"/>
+                <Label Grid.Column="2" Content="Encoding" Style="{StaticResource GlobalFontStyleHint}" Margin="20,5,0,0"/>
+                <ComboBox x:Name="cboEncoding"
+                          Grid.Column="2" 
+                          Style="{StaticResource baseStyleComboBox}"
+                          ItemsSource="{Binding Encodings}"
+                          DisplayMemberPath="Value"
+                          SelectedValuePath="Key"
+                          SelectedItem="{Binding SelectedEncoding, Mode=TwoWay}" Margin="96,3,21,4" />
+            </Grid>
+        </StackPanel>
+        <DockPanel Grid.Row="2" Height="140" Width="800">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <DockPanel Grid.Column="0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Content="Start Column" Style="{StaticResource GlobalFontStyleHint}" Margin="10,7,0,0"/>
+                        <TextBox Grid.Row="0" Style="{StaticResource globalTextBoxSmall}" Margin="100,0,0,0"/>
+                        <Label Grid.Row="1" Content="Start Row" Style="{StaticResource GlobalFontStyleHint}" Margin="10,7,0,0"/>
+                        <TextBox Grid.Row="1" Style="{StaticResource globalTextBoxSmall}" Margin="100,0,0,0"/>
+                        <Label Grid.Row="2" Content="Number of Column" Style="{StaticResource GlobalFontStyleHint}" Margin="10,7,0,0"/>
+                        <TextBox Grid.Row="2" Style="{StaticResource globalTextBoxSmall}" Margin="100,0,0,0"/>
+                        <Label Grid.Row="3" Content="Number of Row" Style="{StaticResource GlobalFontStyleHint}" Margin="10,7,0,0"/>
+                        <TextBox Grid.Row="3" Style="{StaticResource globalTextBoxSmall}" Margin="100,0,0,0"/>
+                        <Button Grid.Row="4" Style="{StaticResource globalButtonHint}" Content="Import"/>
+                    </Grid>
+                </DockPanel>
+                <DockPanel Width="530" Grid.Column="1" >
+                    <DataGrid Margin="0,0,20,0"/>
+                </DockPanel>
+            </Grid>
+        </DockPanel>
+        <DockPanel Grid.Row="3">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="btnAdd" Grid.Column="1" Content="Add" Style="{StaticResource globalButtonHint}" Margin="0,0,200,0" Click="btnAdd_Click"/>
+                <Button x:Name="btnEdit" Grid.Column="1" Content="Edit" Style="{StaticResource globalButtonHint}"/>
+                <Button x:Name="btnDel" Grid.Column="1" Content="Delete" Style="{StaticResource globalButtonHint}"  Margin="200,0,0,0" Background="Red"/>
+            </Grid>
+        </DockPanel>
+        <DockPanel Width="800" Grid.Row="4">
+            <DataGrid Margin="10,10,20,10" AutoGenerateColumns="False"  SelectionMode="Single" IsReadOnly="True" CanUserResizeColumns="False"
+                      ItemsSource="{Binding Rules, Mode=TwoWay}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="0.2*" Header="No"/>
+                    <DataGridTextColumn Width="1*" Header="Process Type" Binding="{Binding ProcessType, UpdateSourceTrigger=PropertyChanged}"/>
+                    <DataGridTextColumn Width="1*" Header="Action" Binding="{Binding ActionName, UpdateSourceTrigger=PropertyChanged}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+        <DockPanel Width="800" Grid.Row="5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Style="{StaticResource globalButtonAction}" Background="Green" Content="Excute"/>
+                <Button Grid.Column="1" Style="{StaticResource globalButtonAction}" Background="#FF3D89EF" Content="Save" Command="{Binding SaveProjectCommand}"/>
+                <Button Grid.Column="2" Style="{StaticResource globalButtonAction}" Background="Yellow" Content="Cancel"/>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</Window>

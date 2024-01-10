@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="IDC.App.Views.ViewDetails.ItemBonding"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IDC.App.Views.ViewDetails"
+             mc:Ignorable="d" 
+             d:DesignHeight="384" d:DesignWidth="800">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="475,30,0,0" TextWrapping="Wrap" Text="Item" VerticalAlignment="Top" RenderTransformOrigin="0.619,-0.369"/>
+        <TextBlock HorizontalAlignment="Left" Margin="475,76,0,0" TextWrapping="Wrap" Text="Action" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="475,119,0,0" TextWrapping="Wrap" Text="Position" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="475,162,0,0" TextWrapping="Wrap" Text="Item" VerticalAlignment="Top"/>
+        <TextBox Text="{Binding ItemText, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="562,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ComboBox ItemsSource="{Binding Action}" SelectedItem="{Binding ActionSelectedItems}" HorizontalAlignment="Left" Margin="562,70,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox ItemsSource="{Binding Position}" SelectedItem="{Binding PositionSelectedItem}" HorizontalAlignment="Left" Margin="562,116,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding Item2Text, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="562,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Rectangle HorizontalAlignment="Left" Height="203" Margin="10,30,0,0" Stroke="Black" VerticalAlignment="Top" Width="438"/>
+        <Button Content="Add Case" HorizontalAlignment="Left" Margin="562,202,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.931,0.253" Width="74"/>
+        <Button Content="Save" HorizontalAlignment="Left" Margin="308,294,0,0" VerticalAlignment="Top" Width="74" Background="LightBlue"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="450,294,0,0" VerticalAlignment="Top" Width="74" Background="LightYellow"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,26 @@
+﻿<Window x:Class="IDC.App.Views.ModificationDetail"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IDC.App.Views"
+        xmlns:uc="clr-namespace:IDC.App.Views.ViewDetails"
+        mc:Ignorable="d"
+        Title="ModificationDetail" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50px"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.ColumnSpan="2">
+            <Label Style="{StaticResource baseStyleLabel}" Margin="0,0,20,0" FontWeight="Bold">Modification Name</Label>
+            <TextBox x:Name="ModName" Style="{StaticResource globalTextBoxShort}" Text="{Binding modName, Mode=TwoWay}"></TextBox>
+            <Label Style="{StaticResource baseStyleLabel}" Margin="50,0,20,0" FontWeight="Bold">Modification Type</Label>
+            <ComboBox x:Name="ModType" 
+                      Style="{StaticResource baseStyleComboBox}" Width="200"
+                      ItemsSource ="{Binding ModList}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding _selectedMod, Mode=TwoWay}"   HorizontalAlignment="Left" SelectionChanged="ModType_SelectionChanged" ></ComboBox>
+        </DockPanel>
+        <DockPanel x:Name="ContentPanel" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+    </Grid>
+</Window>

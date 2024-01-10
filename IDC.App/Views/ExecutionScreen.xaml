@@ -1,0 +1,77 @@
+﻿<Window x:Class="IDC.App.Views.ExecutionScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IDC.App.Views"
+        mc:Ignorable="d"
+        Title="ExecutionScreen" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" Background="#F5F5F5" Margin="20,50,20,20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Style="{StaticResource baseStyleLabel}" 
+                       Content="Project" 
+                       FontWeight="Bold"
+                       FontSize="16"
+                       Margin="50,0,0,0"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       />
+                <Label Style="{StaticResource baseStyleLabel}" 
+                       x:Name="projectName"
+                       Content="{Binding ProjectName,Mode=TwoWay}" 
+                       FontWeight="Bold"
+                       FontSize="16"
+                       Margin="50,0,0,0"
+                       Grid.Row="0"
+                       Grid.Column="1"/>
+                <Label Style="{StaticResource baseStyleLabel}" 
+                       Content="Location" 
+                       FontWeight="Bold"
+                       FontSize="16"
+                       Margin="50,0,0,0"
+                       Grid.Row="1"
+                       Grid.Column="0"
+                       />
+                <TextBox Style="{StaticResource globalTextBoxLong}" 
+                       x:Name="saveFileLocation" 
+                         Text="{Binding SaveFileDirectory,Mode=TwoWay}"
+                       FontWeight="Bold"
+                       FontSize="16"
+                       Margin="50,0,0,0"
+                       Grid.Row="1"
+                       Grid.Column="1" HorizontalAlignment="Left"/>
+                <Button Style="{StaticResource globalButtonBrowse}" 
+                        Content="Browse"
+                        Command="{Binding browseFile}"
+                        x:Name="browseSaveFile" 
+                        Margin="50,0,0,0"
+                        Grid.Row="2"
+                        Grid.Column="1" 
+                        HorizontalAlignment="Left" Click="browseSaveFile_Click"/>
+            </Grid>
+        </DockPanel>
+        <DockPanel Grid.Row="1" HorizontalAlignment="Center">
+            <Button x:Name="btnExecute" Command="{Binding executeCmd}" Content="Execute" Style="{StaticResource globalButtonAction}" Margin="0,0,50,0" FontWeight="Bold" Background="#25D366"/>
+            <Button x:Name="btnCancel" Content="Cancel" Style="{StaticResource globalButtonAction}" FontWeight="Bold" Background="#FCED65" Click="btnCancel_Click"/>
+        </DockPanel>
+    </Grid>
+</Window>
